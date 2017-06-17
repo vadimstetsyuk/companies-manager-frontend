@@ -5,16 +5,21 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { CompaniesTreeComponent } from './companies-tree/companies-tree.component';
+
+import { TreeModule } from 'angular-tree-component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent
+    NavbarComponent,
+    CompaniesTreeComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    TreeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

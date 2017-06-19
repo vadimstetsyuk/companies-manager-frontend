@@ -6,7 +6,7 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CompaniesTreeComponent } from './companies-tree/companies-tree.component';
-import { CompaniesListComponent } from './companies-list/companies-list.component';
+import { CompaniesTableComponent } from './companies-table/companies-table.component';
 
 import { TreeModule } from 'angular-tree-component';
 
@@ -17,7 +17,7 @@ import { CompanyService } from './services/company.service';
     AppComponent,
     NavbarComponent,
     CompaniesTreeComponent,
-    CompaniesListComponent
+    CompaniesTableComponent
   ],
   imports: [
     BrowserModule,

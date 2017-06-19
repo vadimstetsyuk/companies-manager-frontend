@@ -1,0 +1,17 @@
+<table class="table table-bordered table-striped">
+  <tr>
+    <td>Company</td>
+    <td>Estimated Earnings</td>
+    <td>Estimated Earnings + Child Companies</td>
+    <td>Actions</td>
+  </tr>
+  <tr *ngFor="let company of tableData">
+    <td>{{ company.name }}</td>
+    <td>{{ company.earnings }}</td>
+    <td>{{ company.fullEarnings }}</td>
+    <td>
+      <button type="button" class="btn btn-primary">Edit</button>
+      <button type="button" class="btn btn-danger">Delete</button>
+    </td>
+  </tr>
+</table>

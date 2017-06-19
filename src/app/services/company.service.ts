@@ -13,7 +13,11 @@ export class CompanyService {
     constructor(private http: Http) {
     }
 
-    getCompanies(url: string): Observable<Company[]> {
+    getCompanies(): Observable<Company[]> {
+        // let url = 'http://localhost:3000/api/companies';
+        let url = 'assets/companies.json';
+        
+
         return this.http.get(url)
             .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error.json().error || 'Server error'));

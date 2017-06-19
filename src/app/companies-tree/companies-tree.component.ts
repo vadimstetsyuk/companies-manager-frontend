@@ -1,39 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Company } from '../models/Company';
+import { CompanyService } from '../services/company.service';
 
 @Component({
   selector: 'companies-tree',
   templateUrl: './companies-tree.component.html'
 })
 
-export class CompaniesTreeComponent {
-  nodes = [
-    {
-      name: 'root1',
-      children: [
-        { name: 'child1' },
-        { name: 'child2' }
-      ],
-      earnings: 100
-    },
-    {
-      name: 'root2',
-      children: [
-        {
-          name: 'child2.1',
-          children: [],
-          earnings: 100
+export class CompaniesTreeComponent implements OnInit {
+  companies: Company[];
 
-        },
-        {
-          name: 'child2.2',
-          children: [],
-          earnings: 100
-        }
-      ],
-      earnings: 100
-    },
-    { name: 'root3', children: [], earnings: 100 },
-    { name: 'root4', children: [], earnings: 100 },
-    { name: 'root5', children: [], earnings: 100 }
-  ];
+  constructor(private _companyService: CompanyService) {
+
+  }
+
+  ngOnInit() {
+    this.getCompanies();
+  }
+
+  getCompanies() {
+    this._companyService.getCompanies()
+      .subscribe(
+      companies => this.companies = companies,
+      err => {
+        // console.log(err);
+      });
+  }
 }

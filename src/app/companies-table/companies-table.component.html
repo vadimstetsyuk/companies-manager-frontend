@@ -1,22 +1,30 @@
 <!-- Companies table -->
-<table class="table table-bordered table-striped">
-  <tr>
-    <td>Company</td>
-    <td>Estimated Earnings</td>
-    <td>Estimated Earnings + Child Companies</td>
-    <td>Actions</td>
-  </tr>
-  <tr *ngFor="let company of paginated">
-    <td>{{ company.name }}</td>
-    <td>{{ company.earnings }}</td>
-    <td>{{ company.fullEarnings }}</td>
-    <td>
-      <button type="button" class="btn btn-primary">Edit</button>
-      <button type="button" class="btn btn-danger">Delete</button>
-    </td>
-  </tr>
+<table class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>Company</th>
+      <th>Estimated Earnings</th>
+      <th>Estimated Earnings + Child Companies</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let company of paginated">
+      <td>{{ company.name }}</td>
+      <td>{{ company.earnings }}</td>
+      <td>{{ company.fullEarnings }}</td>
+      <td>
+        <button type="button" class="btn btn-primary" (click)="editDialog.show(company)">Update</button>
+        <button type="button" class="btn btn-danger">Delete</button>
+      </td>
+    </tr>
+  </tbody>
 </table>
 
 <!-- Pagination -->
-<button type="button" class="btn btn-primary" (click)="paginateCompanies(1)">1</button>
-<button type="button" class="btn btn-primary" (click)="paginateCompanies(2)">2</button>
+<pagination [itemsPerPage]="itemsPerPage" [totalItems]="tableData.length" (pageChanged)="paginateCompanies($event.page)">
+</pagination>
+
+
+<!-- Edit company modal dialog-->
+<edit-company-dialog #editDialog [companies]="tableData"></edit-company-dialog>

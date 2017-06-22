@@ -12,6 +12,7 @@ import { AddCompanyComponent } from './dialogs/add-dialog/add-dialog.component';
 import { EditCompanyComponent } from './dialogs/edit-dialog/edit-dialog.component';
 
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { TreeModule } from 'angular-tree-component';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 
@@ -31,6 +32,7 @@ import { CompanyService } from './services/company.service';
     HttpModule,
     TreeModule,
     ModalModule.forRoot(),
+    PaginationModule.forRoot(),
     TypeaheadModule.forRoot()
   ],
   entryComponents: [AddCompanyComponent, EditCompanyComponent],

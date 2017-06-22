@@ -4,7 +4,8 @@ import { CompanyService } from '../services/company.service';
 
 @Component({
     selector: 'companies-table',
-    templateUrl: './companies-table.component.html'
+    templateUrl: './companies-table.component.html',
+    styleUrls: ['companies-table.component.scss']
 })
 
 export class CompaniesTableComponent implements OnInit {
@@ -12,16 +13,20 @@ export class CompaniesTableComponent implements OnInit {
     tableData: Company[];
     paginated: Company[];
 
-    itemOnPage: number = 9;
+    itemsPerPage: number = 5;
 
     constructor(private _companyService: CompanyService) {
         this.tableData = [];
+        this.paginated = [];
     }
 
     ngOnInit() {
         this.getCompanies();
     }
 
+    /*
+    *   Get companies from service
+    */
     getCompanies() {
         this._companyService.getCompanies()
             .subscribe((companies) => {
@@ -37,6 +42,9 @@ export class CompaniesTableComponent implements OnInit {
             });
     }
 
+    /*
+    * Convert data to row format for displaying at the table
+    */
     convertDataForTable(companies: Company[]) {
         if (companies == []) {
             return;
@@ -53,9 +61,12 @@ export class CompaniesTableComponent implements OnInit {
         return;
     }
 
+    /*
+    * Deviding companies to itemPerPage
+    */
     paginateCompanies(page: number) {
-        let low = page * this.itemOnPage - this.itemOnPage;
-        let high = page * this.itemOnPage;
+        let low = page * this.itemsPerPage - this.itemsPerPage;
+        let high = page * this.itemsPerPage;
 
         this.paginated = this.tableData.filter(company => {
             return this.tableData.indexOf(company) >= low && this.tableData.indexOf(company) < high;

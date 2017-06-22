@@ -6,63 +6,78 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
 import { Company } from '../models/Company';
+import { _SERVER} from './config';
 
 @Injectable()
 export class CompanyService {
 
-    constructor(private http: Http) {
+    constructor(private _http: Http) {
     }
 
+    /*
+    *   Get all companies from server as tree structure
+    */
     getCompanies(): Observable<Company[]> {
-        // let url = 'http://localhost:3000/api/companies';
+        // let url = _SERVER + 'companies';
         let url = 'assets/companies.json';
 
 
-        return this.http.get(url)
+        return this._http.get(url)
             .map((res: Response) => res.json())
             .catch(this.handleError);
     }
 
-    getCompanyById(_id: Number): Observable<Company> {
-        // let url = 'http://localhost:3000/api/companies/' + _id;
-        let url = 'assets/companies.json';
+    /*
+    *   Get company from server as one element without children
+    */
+    getCompanyById(id: Number): Observable<Company> {
+        let url = _SERVER + 'companies/' + id;
 
-        return this.http.get(url)
+        return this._http.get(url)
             .map((res: Response) => res.json())
             .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
 
-    addCompany(_company: Company): Observable<Company> {
-        let body = JSON.stringify(_company);
+    /*
+    *   Add company to server
+    */
+    addCompany(company: Company): Observable<Company> {
+        let body = JSON.stringify(company);
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 
-        let url = 'http://localhost:3000/api/companies';
+        let url = _SERVER + 'companies';
 
-        return this.http.post(url, body, options)
+        return this._http.post(url, body, options)
             .map(res => <Company>res.json())
             .catch(this.handleError);
     }
 
-    editCompany(_company: Company): Observable<Company> {
-        let body = JSON.stringify(_company);
+    /*
+    *   Edit company
+    */
+    editCompany(company: Company): Observable<Company> {
+        let body = JSON.stringify(company);
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 
-        let url = 'http://localhost:3000/api/companies/' + _company.id;
+        let url = _SERVER + 'companies/' + company.id;
 
-        return this.http.put(url, body, options)
+        return this._http.put(url, body, options)
             .map(res => <Company>res.json())
             .catch(this.handleError);
     }
 
-    deleteCompany(_id: Number): Observable<Company> {
+    /*
+    *   Delete company
+    */
+    deleteCompany(id: Number): Observable<Company> {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 
-        let url = 'http://localhost:3000/api/companies/' + _id;
+        let url = _SERVER + 'companies/' + id;
 
-        return this.http.delete(url, options)
+        return this._http.delete(url, options)
             .map(res => <Company>res.json())
             .catch(this.handleError);
     }

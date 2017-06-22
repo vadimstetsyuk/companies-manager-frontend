@@ -10,6 +10,9 @@ import { CompanyService } from '../services/company.service';
 export class CompaniesTableComponent implements OnInit {
     companies: Company[];
     tableData: Company[];
+    paginated: Company[];
+
+    itemOnPage: number = 9;
 
     constructor(private _companyService: CompanyService) {
         this.tableData = [];
@@ -23,10 +26,14 @@ export class CompaniesTableComponent implements OnInit {
         this._companyService.getCompanies()
             .subscribe((companies) => {
                 this.companies = companies;
-                this.convertDataForTable(companies);
+
+                if (this.companies) {
+                    this.convertDataForTable(companies);
+                    this.paginateCompanies(1);
+                }
             },
             err => {
-                console.log(err);
+                // console.log(err);
             });
     }
 
@@ -44,5 +51,14 @@ export class CompaniesTableComponent implements OnInit {
             }
         });
         return;
+    }
+
+    paginateCompanies(page: number) {
+        let low = page * this.itemOnPage - this.itemOnPage;
+        let high = page * this.itemOnPage;
+
+        this.paginated = this.tableData.filter(company => {
+            return this.tableData.indexOf(company) >= low && this.tableData.indexOf(company) < high;
+        });
     }
 }

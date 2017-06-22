@@ -1,5 +1,4 @@
-import { Component, ViewChild, ViewContainerRef } from '@angular/core';
-import { AddCompanyComponent } from '../dialogs/add-dialog/add-dialog.component';
+import { Component } from '@angular/core';
 
 @Component({
     selector: 'navbar',
@@ -7,8 +6,5 @@ import { AddCompanyComponent } from '../dialogs/add-dialog/add-dialog.component'
 })
 
 export class NavbarComponent {
-    @ViewChild('childModal') childModal: AddCompanyComponent;
-    constructor(private viewContainerRef: ViewContainerRef) {
-    }
 
 }

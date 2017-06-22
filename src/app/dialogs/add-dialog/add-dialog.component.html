@@ -1,19 +1,60 @@
-<div bsModal #childModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
+<div bsModal #addDialog="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title pull-left">Add company</h4>
+                <h4 class="modal-title pull-left">Create company</h4>
                 <button type="button" class="close pull-right" aria-label="Close" (click)="hide()">
           <span aria-hidden="true">&times;</span>
         </button>
             </div>
             <div class="modal-body">
-                <ng-content select=".modal-body"> </ng-content>
+                <form>
+                    <div class="form-group">
+                        <label for="company">Company</label>
+                        <input type="text" class="form-control" [(ngModel)]="currentCompany.name" name="company" placeholder="Company name">
+                    </div>
+                    <div class="form-group">
+                        <label for="earnings">Earnings (in dollars)</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">$</div>
+                            <input type="number" class="form-control" [(ngModel)]="currentCompany.earnings" name="earnings" min="0" max="100000000000"
+                                placeholder="Earnings">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                            <div class="btn-group" role="group">
+                                <button #independent type="button" class="btn" [ngClass]="{ 'btn-primary': isIndependent}" (click)="isIndependent = !isIndependent">
+                                    Independent</button>
+                            </div>
+                            <div class="btn-group" role="group">
+                                <button #child type="button" class="btn" [ngClass]="{ 'btn-primary': !isIndependent  }" (click)="isIndependent = !isIndependent">
+                                    Child company</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" *ngIf="!isIndependent">
+                        <label for="company">Parent company</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
+                            <input class="form-control" [(ngModel)]="selectedParentCompany" placeholder="Please, type a name of parent company" [typeahead]="companies"
+                                typeaheadOptionField="name" name="parent" (typeaheadLoading)="changeTypeaheadLoading($event)"
+                                (typeaheadNoResults)="changeTypeaheadNoResults($event)">
+                        </div>
+                        <div *ngIf="typeaheadLoading===true">
+                            <i class="glyphicon glyphicon-refresh ng-hide"></i>
+                        </div>
+                        <div *ngIf="typeaheadNoResults===true">
+                            <i class="glyphicon glyphicon-remove"></i> No Results Found
+                        </div>
+                    </div>
+                </form>
             </div>
 
             <div class="modal-footer">
                 <div class="pull-left">
-                    <button class="btn btn-default" (click)="hide()"> Cancel </button>
+                    <button class="btn btn-primary">Add company</button>
+                    <button class="btn btn-default" (click)="hide()">Cancel</button>
                 </div>
             </div>
         </div>

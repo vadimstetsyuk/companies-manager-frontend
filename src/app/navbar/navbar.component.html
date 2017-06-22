@@ -11,11 +11,13 @@
     <!-- Collect the nav links for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <li (click)="openAddDialog()"><a href="#">Add company</a></li>
-        <li><a href="#">View all companies</a></li>
+        <li (click)="addDialog.show()"><a href="#">Create company</a></li>
       </ul>
     </div>
     <!-- /.navbar-collapse -->
   </div>
   <!-- /.container-fluid -->
 </nav>
+
+
+<add-company-dialog #addDialog></add-company-dialog>

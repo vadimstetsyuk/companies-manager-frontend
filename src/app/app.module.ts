@@ -9,10 +9,11 @@ import { CompaniesTreeComponent } from './companies-tree/companies-tree.componen
 import { CompaniesTableComponent } from './companies-table/companies-table.component';
 
 import { AddCompanyComponent } from './dialogs/add-dialog/add-dialog.component';
-
+import { EditCompanyComponent } from './dialogs/edit-dialog/edit-dialog.component';
 
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { TreeModule } from 'angular-tree-component';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 
 import { CompanyService } from './services/company.service';
 
@@ -29,9 +30,10 @@ import { CompanyService } from './services/company.service';
     FormsModule,
     HttpModule,
     TreeModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    TypeaheadModule.forRoot()
   ],
-  entryComponents: [AddCompanyComponent],
+  entryComponents: [AddCompanyComponent, EditCompanyComponent],
   providers: [CompanyService],
   bootstrap: [AppComponent]
 })

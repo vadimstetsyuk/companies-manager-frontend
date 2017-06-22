@@ -8,6 +8,10 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { CompaniesTreeComponent } from './companies-tree/companies-tree.component';
 import { CompaniesTableComponent } from './companies-table/companies-table.component';
 
+import { AddCompanyComponent } from './dialogs/add-dialog/add-dialog.component';
+
+
+import { ModalModule } from 'ngx-bootstrap/modal';
 import { TreeModule } from 'angular-tree-component';
 
 import { CompanyService } from './services/company.service';
@@ -17,14 +21,17 @@ import { CompanyService } from './services/company.service';
     AppComponent,
     NavbarComponent,
     CompaniesTreeComponent,
-    CompaniesTableComponent
+    CompaniesTableComponent,
+    AddCompanyComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    TreeModule
+    TreeModule,
+    ModalModule.forRoot()
   ],
+  entryComponents: [AddCompanyComponent],
   providers: [CompanyService],
   bootstrap: [AppComponent]
 })

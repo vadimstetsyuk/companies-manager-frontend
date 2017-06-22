@@ -24,7 +24,8 @@ import { CompanyService } from './services/company.service';
     NavbarComponent,
     CompaniesTreeComponent,
     CompaniesTableComponent,
-    AddCompanyComponent
+    AddCompanyComponent,
+    EditCompanyComponent
   ],
   imports: [
     BrowserModule,

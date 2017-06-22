@@ -1,0 +1,101 @@
+[
+    {
+        "id": 1,
+        "parentId": 0,
+        "name": "Gemicle",
+        "earnings": 100,
+        "fullEarnings": 100,
+        "children": [
+            {
+                "id": 3,
+                "parentId": 1,
+                "name": "InnoVinn LTD",
+                "earnings": 100,
+                "fullEarnings": 100,
+                "children": [
+                    {
+                        "id": 6,
+                        "parentId": 3,
+                        "name": "Playtika",
+                        "earnings": 100,
+                        "fullEarnings": 100,
+                        "children": []
+                    },
+                    {
+                        "id": 5,
+                        "parentId": 3,
+                        "name": "Exadel",
+                        "earnings": 100,
+                        "fullEarnings": 100,
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "id": 4,
+                "parentId": 1,
+                "name": "ElifTech",
+                "earnings": 100,
+                "fullEarnings": 100,
+                "children": []
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "parentId": 0,
+        "name": "Infopulse",
+        "earnings": 100,
+        "fullEarnings": 100,
+        "children": [
+            {
+                "id": 7,
+                "parentId": 2,
+                "name": "Win Interactive",
+                "earnings": 100,
+                "fullEarnings": 100,
+                "children": []
+            },
+            {
+                "id": 8,
+                "parentId": 2,
+                "name": "Delphi",
+                "earnings": 100,
+                "fullEarnings": 100,
+                "children": []
+            }
+        ]
+    },
+    {
+        "id": 9,
+        "parentId": 0,
+        "name": "WebOSS",
+        "earnings": 100,
+        "fullEarnings": 100,
+        "children": []
+    },
+    {
+        "id": 10,
+        "parentId": 0,
+        "name": "Plasmatek",
+        "earnings": 100,
+        "fullEarnings": 100,
+        "children": []
+    },
+    {
+        "id": 11,
+        "parentId": 0,
+        "name": "Plextek",
+        "earnings": 100,
+        "fullEarnings": 100,
+        "children": []
+    },
+    {
+        "id": 12,
+        "parentId": 0,
+        "name": "Astound",
+        "earnings": 100,
+        "fullEarnings": 100,
+        "children": []
+    }
+]

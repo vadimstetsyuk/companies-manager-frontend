@@ -37,7 +37,7 @@
                         <label for="company">Parent company</label>
                         <div class="input-group">
                             <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
-                            <input class="form-control" [(ngModel)]="selectedParentCompany" placeholder="Please, type a name of parent company" [typeahead]="companies"
+                            <input class="form-control" [(ngModel)]="selectedParentCompany" placeholder="Please, type a name of parent company" [typeahead]="tableData"
                                 typeaheadOptionField="name" name="parent" (typeaheadLoading)="changeTypeaheadLoading($event)"
                                 (typeaheadNoResults)="changeTypeaheadNoResults($event)">
                         </div>
@@ -53,7 +53,7 @@
 
             <div class="modal-footer">
                 <div class="pull-left">
-                    <button class="btn btn-primary">Update company</button>
+                    <button class="btn btn-primary" [disabled]="(selectedParentCompany == '' && !isIndependent) || currentCompany.name == ''" (click)="updateCompany()">Update company</button>
                     <button class="btn btn-default" (click)="hide()">Cancel</button>
                 </div>
             </div>

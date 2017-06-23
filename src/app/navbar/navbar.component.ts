@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
     selector: 'navbar',
@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
 })
 
 export class NavbarComponent {
+    @Output() onHideModal = new EventEmitter();
 
+    
+    onHideDialog() {
+        this.onHideModal.emit();
+    }
 }

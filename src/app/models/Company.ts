@@ -8,15 +8,15 @@ export class Company {
     name: String;
     earnings: number;
     fullEarnings: number;
-    children: Array<Company>;
+    child: Array<Company>;
 
-    constructor(id: Number, parentId: Number, name: String, earnings: number, fullEarnings: number, children: Array<Company>) {
+    constructor(id: Number, parentId: Number, name: String, earnings: number, fullEarnings: number, child: Array<Company>) {
         this.id = id;
         this.parentId = id;
         this.name = name;
         this.earnings = earnings;
         this.fullEarnings = fullEarnings;
-        this.children = children;
+        this.child = child;
     }
 
     /*
@@ -42,8 +42,8 @@ export class Company {
         return this.fullEarnings;
     }
 
-    public getChildren(): Array<Company> {
-        return this.children;
+    public getChild(): Array<Company> {
+        return this.child;
     }
 
     /*
@@ -69,7 +69,7 @@ export class Company {
         this.fullEarnings = fullEarnings;
     }
 
-    public setChildren(children: Array<Company>): void {
-        this.children = children;
+    public setChild(child: Array<Company>): void {
+        this.child = child;
     }
 }

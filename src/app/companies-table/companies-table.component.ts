@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 import { Company } from '../models/Company';
 import { CompanyService } from '../services/company.service';
 
@@ -8,7 +8,9 @@ import { CompanyService } from '../services/company.service';
     styleUrls: ['companies-table.component.scss']
 })
 
-export class CompaniesTableComponent implements OnInit {
+export class CompaniesTableComponent implements OnChanges {
+    @Input() companiesChanged: boolean;
+    @Output() onChangeCompanies = new EventEmitter();
     companies: Company[];
     tableData: Company[];
     paginated: Company[];
@@ -17,11 +19,18 @@ export class CompaniesTableComponent implements OnInit {
 
     constructor(private _companyService: CompanyService) {
         this.tableData = [];
-        this.paginated = [];
     }
 
-    ngOnInit() {
+    ngOnChanges() {
         this.getCompanies();
+    }
+
+    /*
+    * Call when companies was deleted, added or updated
+    */
+    onUpdateCompanies() {
+        this.getCompanies();
+        this.onChangeCompanies.emit();
     }
 
     /*
@@ -33,12 +42,25 @@ export class CompaniesTableComponent implements OnInit {
                 this.companies = companies;
 
                 if (this.companies) {
+                    this.tableData = [];
                     this.convertDataForTable(companies);
                     this.paginateCompanies(1);
                 }
             },
             err => {
                 // console.log(err);
+            });
+    }
+
+    /*
+    * Delete company
+    */
+    deleteCompany(company: Company) {   
+        this._companyService.deleteCompany(company.id)
+            .subscribe((result) => {
+                this.getCompanies();
+
+                this.onChangeCompanies.emit();          
             });
     }
 
@@ -52,8 +74,8 @@ export class CompaniesTableComponent implements OnInit {
 
         companies.forEach(company => {
             this.tableData.push(company);
-            if (company.children != []) {
-                this.convertDataForTable(company.children);
+            if (company.child != []) {
+                this.convertDataForTable(company.child);
             } else {
                 return;
             }

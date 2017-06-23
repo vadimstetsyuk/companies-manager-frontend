@@ -1,10 +1,10 @@
-<navbar></navbar>
+<navbar (onHideModal)="refreshCompanies()"></navbar>
 
 <div class="container">
     <div class="col-xs-6 col-sm-3">
-        <companies-tree class="thumbnail"></companies-tree>
+        <companies-tree [companies]="companies" class="thumbnail"></companies-tree>
     </div>
     <div class="col-xs-6 col-sm-8">
-        <companies-table></companies-table>  
+        <companies-table [companiesChanged]="hasChanged" (onChangeCompanies)="refreshCompanies()"></companies-table>  
     </div>
 </div>

@@ -1,4 +1,2 @@
-<tree-root [focused]="true" [nodes]="companies" (activate)="editDialog.show()"></tree-root>
-
-<!-- Edit company modal dialog-->
-<edit-company-dialog #editDialog ></edit-company-dialog>
+<tree-root [focused]="true" [nodes]="companies"
+        [options]="{ childrenField: 'child' }"></tree-root>

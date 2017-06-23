@@ -18,8 +18,7 @@ export class CompanyService {
     *   Get all companies from server as tree structure
     */
     getCompanies(): Observable<Company[]> {
-        // let url = _SERVER + 'companies';
-        let url = 'assets/companies.json';
+        let url = _SERVER + 'companies';
 
 
         return this._http.get(url)
